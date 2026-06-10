@@ -1,0 +1,32 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Sobre from '../components/Sobre.astro';
+import Atendimentos from '../components/Atendimentos.astro';
+import Faq from '../components/Faq.astro';
+import BlogPreview from '../components/BlogPreview.astro';
+import CtaFinal from '../components/CtaFinal.astro';
+import Footer from '../components/Footer.astro';
+import BotaoWhatsApp from '../components/BotaoWhatsApp.astro';
+
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog'))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+---
+
+<Base>
+  <Header />
+  <main>
+    <Hero />
+    <Sobre />
+    <Atendimentos />
+    <Faq />
+    <BlogPreview posts={posts} />
+    <CtaFinal />
+  </main>
+  <Footer />
+  <BotaoWhatsApp />
+</Base>

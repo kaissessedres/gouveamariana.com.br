@@ -1,0 +1,188 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import BotaoWhatsApp from '../../components/BotaoWhatsApp.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog'))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+function formatarData(date: Date) {
+  return date.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
+}
+---
+
+<Base
+  title="Blog · Mariana Gouvêa Psicóloga Infantojuvenil"
+  description="Artigos sobre saúde mental de crianças e adolescentes, dicas para pais e cuidadores, orientação parental e muito mais."
+>
+  <Header />
+  <main class="blog-pagina">
+    <div class="blog-pagina__cabecalho">
+      <div class="container">
+        <a href="/" class="blog-pagina__voltar">← Voltar ao site</a>
+        <h1>Blog</h1>
+        <p>Conteúdo sobre saúde mental infantojuvenil para pais, cuidadores e adolescentes.</p>
+      </div>
+    </div>
+
+    <div class="container blog-pagina__conteudo">
+      {posts.length === 0 ? (
+        <div class="blog-pagina__vazio">
+          <p>Em breve, novos artigos por aqui. Fique de olho!</p>
+          <a href="/" class="btn btn--outline">Voltar ao início</a>
+        </div>
+      ) : (
+        <ul class="blog-pagina__lista">
+          {posts.map(post => (
+            <li class="post-item">
+              <a href={`/blog/${post.slug}`} class="post-item__link">
+                <div class="post-item__conteudo">
+                  {post.data.tags && post.data.tags.length > 0 && (
+                    <span class="post-item__tag">{post.data.tags[0]}</span>
+                  )}
+                  <h2 class="post-item__titulo">{post.data.title}</h2>
+                  <p class="post-item__descricao">{post.data.description}</p>
+                  <time class="post-item__data" datetime={post.data.pubDate.toISOString()}>
+                    {formatarData(post.data.pubDate)}
+                  </time>
+                </div>
+                <span class="post-item__seta" aria-hidden="true">→</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  </main>
+  <Footer />
+  <BotaoWhatsApp />
+</Base>
+
+<style>
+  .blog-pagina {
+    padding-top: 72px;
+  }
+
+  .blog-pagina__cabecalho {
+    background: linear-gradient(135deg, #f0f5e8 0%, var(--cor-fundo) 100%);
+    padding-block: var(--espacamento-lg);
+    border-bottom: 1px solid rgba(78, 111, 76, 0.1);
+  }
+
+  .blog-pagina__voltar {
+    display: inline-block;
+    font-size: 0.9rem;
+    color: var(--cor-verde-escuro);
+    font-weight: 500;
+    margin-bottom: var(--espacamento-sm);
+    opacity: 0.75;
+    transition: opacity var(--transicao);
+  }
+
+  .blog-pagina__voltar:hover {
+    opacity: 1;
+  }
+
+  .blog-pagina__cabecalho h1 {
+    margin-bottom: 0.5rem;
+  }
+
+  .blog-pagina__cabecalho p {
+    font-size: 1.05rem;
+    color: var(--cor-texto);
+    opacity: 0.8;
+  }
+
+  .blog-pagina__conteudo {
+    padding-block: var(--espacamento-lg);
+  }
+
+  .blog-pagina__vazio {
+    text-align: center;
+    padding-block: var(--espacamento-xl);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--espacamento-md);
+  }
+
+  .blog-pagina__lista {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    max-width: 760px;
+  }
+
+  .post-item {
+    background-color: #fff;
+    border-radius: var(--raio-md);
+    box-shadow: 0 2px 10px rgba(78, 111, 76, 0.06);
+    overflow: hidden;
+    transition: transform var(--transicao), box-shadow var(--transicao);
+  }
+
+  .post-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(78, 111, 76, 0.12);
+  }
+
+  .post-item__link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--espacamento-md);
+    padding: var(--espacamento-md);
+    color: inherit;
+  }
+
+  .post-item__conteudo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .post-item__tag {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--cor-verde-escuro);
+    background-color: var(--cor-verde-claro);
+    padding: 0.15rem 0.5rem;
+    border-radius: var(--raio-full);
+    width: fit-content;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .post-item__titulo {
+    font-size: 1.05rem;
+    color: var(--cor-verde-escuro);
+  }
+
+  .post-item__descricao {
+    font-size: 0.9rem;
+    color: var(--cor-texto);
+    opacity: 0.7;
+    max-width: 56ch;
+  }
+
+  .post-item__data {
+    font-size: 0.8rem;
+    color: var(--cor-texto);
+    opacity: 0.45;
+  }
+
+  .post-item__seta {
+    font-size: 1.25rem;
+    color: var(--cor-verde-escuro);
+    opacity: 0.4;
+    flex-shrink: 0;
+    transition: opacity var(--transicao), transform var(--transicao);
+  }
+
+  .post-item:hover .post-item__seta {
+    opacity: 0.9;
+    transform: translateX(3px);
+  }
+</style>

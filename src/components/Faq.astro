@@ -1,0 +1,169 @@
+---
+// ⚠️ Pendência §10 — FAQ precisa de aprovação da cliente antes de publicar
+const perguntas = [
+  {
+    pergunta: 'Como funciona o atendimento online?',
+    resposta: 'As sessões acontecem por videochamada, em plataforma segura. O atendimento psicológico online é regulamentado pelo Conselho Federal de Psicologia. ⚠️ Pendência: confirmar plataforma com a cliente.',
+  },
+  {
+    pergunta: 'Como sei se meu filho(a) precisa de acompanhamento?',
+    resposta: 'Mudanças persistentes de comportamento, humor, sono ou desempenho escolar podem ser sinais. A conversa inicial serve justamente para entendermos, juntos, o que faz sentido para cada caso.',
+  },
+  {
+    pergunta: 'Os pais participam do processo?',
+    resposta: 'Sim — especialmente por meio da orientação parental. A comunicação com os responsáveis acontece de forma a preservar o vínculo e o sigilo do adolescente.',
+  },
+  {
+    pergunta: 'Qual a duração e a frequência das sessões?',
+    resposta: '⚠️ Pendência: confirmar com a cliente — ex.: sessões semanais de 50 minutos, ajustadas a cada caso.',
+  },
+  {
+    pergunta: 'O atendimento de adolescentes é sigiloso?',
+    resposta: 'Sim. O sigilo profissional é garantido pelo Código de Ética do Psicólogo, com as exceções legais previstas (situações de risco).',
+  },
+  {
+    pergunta: 'Quais são os valores e formas de pagamento?',
+    resposta: 'Entre em contato pelo WhatsApp para conversarmos sobre valores e disponibilidade de horários.',
+  },
+];
+---
+
+<section class="secao faq" id="duvidas">
+  <div class="container">
+    <div class="faq__cabecalho">
+      <h2>Dúvidas frequentes</h2>
+      <p>Ainda na dúvida? Veja as perguntas mais comuns — e se não encontrar a resposta, me chame no WhatsApp.</p>
+    </div>
+
+    <dl class="faq__lista">
+      {perguntas.map((item, i) => (
+        <div class="faq__item">
+          <dt>
+            <button
+              class="faq__pergunta"
+              id={`faq-btn-${i}`}
+              aria-expanded="false"
+              aria-controls={`faq-resp-${i}`}
+            >
+              <span>{item.pergunta}</span>
+              <svg class="faq__seta" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+          </dt>
+          <dd
+            class="faq__resposta"
+            id={`faq-resp-${i}`}
+            aria-labelledby={`faq-btn-${i}`}
+            hidden
+          >
+            <p>{item.resposta}</p>
+          </dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>
+
+<style>
+  .faq {
+    background-color: #f5f8f0;
+  }
+
+  .faq__cabecalho {
+    text-align: center;
+    margin-bottom: var(--espacamento-lg);
+  }
+
+  .faq__cabecalho p {
+    margin-inline: auto;
+    font-size: 1.05rem;
+    color: var(--cor-texto);
+    opacity: 0.8;
+    margin-top: 0.5rem;
+  }
+
+  .faq__lista {
+    max-width: 760px;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .faq__item {
+    background-color: #fff;
+    border-radius: var(--raio-md);
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(78, 111, 76, 0.06);
+  }
+
+  .faq__pergunta {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.1rem 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: var(--fonte-base);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--cor-verde-escuro);
+    text-align: left;
+    transition: background-color var(--transicao);
+  }
+
+  .faq__pergunta:hover {
+    background-color: rgba(78, 111, 76, 0.04);
+  }
+
+  .faq__seta {
+    flex-shrink: 0;
+    transition: transform var(--transicao);
+    color: var(--cor-verde-escuro);
+  }
+
+  .faq__pergunta[aria-expanded="true"] .faq__seta {
+    transform: rotate(180deg);
+  }
+
+  .faq__resposta {
+    padding: 0 1.5rem 1.25rem;
+    border-top: 1px solid rgba(78, 111, 76, 0.1);
+  }
+
+  .faq__resposta p {
+    font-size: 0.98rem;
+    color: var(--cor-texto);
+    line-height: 1.75;
+    padding-top: 0.75rem;
+    max-width: none;
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.faq__pergunta').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const aberto = btn.getAttribute('aria-expanded') === 'true';
+      const id = btn.getAttribute('aria-controls');
+      const dd = id ? document.getElementById(id) : null;
+
+      // Fechar todos
+      document.querySelectorAll<HTMLButtonElement>('.faq__pergunta').forEach(b => {
+        b.setAttribute('aria-expanded', 'false');
+        const respId = b.getAttribute('aria-controls');
+        const resp = respId ? document.getElementById(respId) : null;
+        if (resp) resp.hidden = true;
+      });
+
+      // Abrir o clicado (se estava fechado)
+      if (!aberto && dd) {
+        btn.setAttribute('aria-expanded', 'true');
+        dd.hidden = false;
+      }
+    });
+  });
+</script>

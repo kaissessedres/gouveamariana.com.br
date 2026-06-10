@@ -1,0 +1,192 @@
+---
+const anoAtual = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__marca">
+      <a href="/" aria-label="Mariana Gouvêa Psicóloga — Início">
+        <img src="/logo-branco.svg" alt="Mariana Gouvêa Psicóloga" height="52"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+        <span class="footer__logo-texto" style="display:none">Mariana Gouvêa</span>
+      </a>
+      <p class="footer__crp">CRP 07/41781</p>
+      <p class="footer__descricao">Psicóloga Infantojuvenil · Atendimento online em todo o Brasil.</p>
+    </div>
+
+    <nav class="footer__nav" aria-label="Links do rodapé">
+      <h3 class="footer__nav-titulo">Navegação</h3>
+      <ul>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#atendimentos">Atendimentos</a></li>
+        <li><a href="#duvidas">Dúvidas</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </nav>
+
+    <div class="footer__contato">
+      <h3 class="footer__nav-titulo">Contato</h3>
+      <ul>
+        <li>
+          <a href="mailto:marianagouvea.psi@gmail.com" class="footer__link-contato">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+            </svg>
+            marianagouvea.psi@gmail.com
+          </a>
+        </li>
+        <li>
+          <a href="https://instagram.com/marianagouvea.psi" class="footer__link-contato" target="_blank" rel="noopener noreferrer">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+            </svg>
+            @marianagouvea.psi
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Aviso de emergência — obrigatório CFP -->
+  <div class="footer__emergencia">
+    <div class="container">
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline;vertical-align:middle;margin-right:0.3rem">
+          <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
+          <line x1="12" y1="9" x2="12" y2="13"/>
+          <line x1="12" y1="17" x2="12.01" y2="17"/>
+        </svg>
+        Este site não oferece atendimento de urgência ou emergência. Em caso de crise, ligue para o
+        <strong>CVV — 188</strong> (24h, gratuito) ou procure o serviço de saúde mais próximo.
+      </p>
+    </div>
+  </div>
+
+  <div class="footer__rodape">
+    <div class="container">
+      <p>© {anoAtual} Mariana Gouvêa · CRP 07/41781. Todos os direitos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background-color: var(--cor-verde-escuro);
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .footer__inner {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: var(--espacamento-lg);
+    padding-block: var(--espacamento-lg);
+    align-items: start;
+  }
+
+  .footer__marca {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .footer__logo-texto {
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #fff;
+  }
+
+  .footer__crp {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--cor-verde-claro);
+    letter-spacing: 0.05em;
+  }
+
+  .footer__descricao {
+    font-size: 0.9rem;
+    opacity: 0.7;
+    line-height: 1.6;
+    max-width: 36ch;
+  }
+
+  .footer__nav-titulo {
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.75rem;
+  }
+
+  .footer__nav ul,
+  .footer__contato ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .footer__nav a {
+    font-size: 0.9rem;
+    opacity: 0.75;
+    transition: opacity var(--transicao);
+  }
+
+  .footer__nav a:hover {
+    opacity: 1;
+  }
+
+  .footer__link-contato {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.85rem;
+    opacity: 0.75;
+    transition: opacity var(--transicao);
+    word-break: break-all;
+  }
+
+  .footer__link-contato:hover {
+    opacity: 1;
+  }
+
+  /* Aviso de emergência */
+  .footer__emergencia {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding-block: 0.9rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .footer__emergencia p {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.8);
+    max-width: none;
+    line-height: 1.6;
+  }
+
+  .footer__emergencia strong {
+    color: #fff;
+  }
+
+  /* Rodapé final */
+  .footer__rodape {
+    padding-block: var(--espacamento-sm);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .footer__rodape p {
+    font-size: 0.8rem;
+    opacity: 0.5;
+    max-width: none;
+  }
+
+  @media (max-width: 768px) {
+    .footer__inner {
+      grid-template-columns: 1fr;
+      gap: var(--espacamento-md);
+    }
+  }
+</style>

@@ -1,0 +1,172 @@
+/* ============================================================
+   DESIGN TOKENS — Mariana Gouvêa Psicóloga
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Cores da marca */
+  --cor-verde-escuro: #4e6f4c;
+  --cor-verde-claro:  #c1d18a;
+  --cor-rosa:         #c76679;
+  --cor-laranja:      #ce8236;
+
+  /* Neutros */
+  --cor-fundo:        #fdfbf7;
+  --cor-texto:        #2e3a2d;
+
+  /* Tipografia */
+  --fonte-base:       'Poppins', sans-serif;
+  --tamanho-base:     1rem;          /* 16px */
+
+  /* Espaçamentos */
+  --espacamento-xs:   0.5rem;
+  --espacamento-sm:   1rem;
+  --espacamento-md:   2rem;
+  --espacamento-lg:   4rem;
+  --espacamento-xl:   6rem;
+
+  /* Bordas */
+  --raio-sm:          0.5rem;
+  --raio-md:          1rem;
+  --raio-lg:          2rem;
+  --raio-full:        9999px;
+
+  /* Transição */
+  --transicao:        0.2s ease;
+}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--fonte-base);
+  font-size: var(--tamanho-base);
+  color: var(--cor-texto);
+  background-color: var(--cor-fundo);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+/* ============================================================
+   TIPOGRAFIA
+   ============================================================ */
+
+h1, h2, h3, h4 {
+  font-family: var(--fonte-base);
+  color: var(--cor-verde-escuro);
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+}
+
+h2 {
+  font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+  font-weight: 700;
+}
+
+h3 {
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  font-weight: 600;
+}
+
+p {
+  max-width: 65ch;
+}
+
+/* ============================================================
+   UTILITÁRIOS
+   ============================================================ */
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: var(--espacamento-md);
+}
+
+.secao {
+  padding-block: var(--espacamento-lg);
+}
+
+.secao--verde-claro {
+  background-color: var(--cor-verde-claro);
+}
+
+.secao--verde-escuro {
+  background-color: var(--cor-verde-escuro);
+  color: #fff;
+}
+
+.secao--verde-escuro h2,
+.secao--verde-escuro h3 {
+  color: #fff;
+}
+
+/* ============================================================
+   BOTÕES
+   ============================================================ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--raio-full);
+  font-family: var(--fonte-base);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: filter var(--transicao), transform var(--transicao);
+  white-space: nowrap;
+}
+
+.btn:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn--whatsapp {
+  background-color: var(--cor-rosa);
+  color: #fff;
+}
+
+.btn--outline {
+  background-color: transparent;
+  color: var(--cor-verde-escuro);
+  border: 2px solid var(--cor-verde-escuro);
+}

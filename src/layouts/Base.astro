@@ -1,0 +1,67 @@
+---
+import '../styles/tokens.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const {
+  title = 'Mariana Gouvêa · Psicóloga Infantojuvenil Online — CRP 07/41781',
+  description = 'Psicoterapia online para adolescentes, grupos terapêuticos e orientação parental com base na Terapia Cognitivo-Comportamental (TCC). Atendimento em todo o Brasil. Agende pelo WhatsApp.',
+  ogImage = '/og-image.png',
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="canonical" href={canonicalURL} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content="psicóloga infantojuvenil online, psicoterapia para adolescentes online, orientação parental online, terapia cognitivo-comportamental para adolescentes, grupo terapêutico para adolescentes" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(ogImage, Astro.site)} />
+    <meta property="og:locale" content="pt_BR" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(ogImage, Astro.site)} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+
+    <!-- JSON-LD -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Mariana Gouvêa",
+        "jobTitle": "Psicóloga",
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "Universidade Federal de Pelotas"
+        },
+        "sameAs": ["https://instagram.com/marianagouvea.psi"],
+        "url": "https://mariana.psi.br"
+      }
+    </script>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

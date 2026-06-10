@@ -1,0 +1,160 @@
+---
+const atendimentos = [
+  {
+    icone: '🧑‍💻',
+    titulo: 'Psicoterapia para Adolescentes',
+    subtitulo: 'Online',
+    texto: `Na psicoterapia para adolescentes também é utilizada a abordagem da Terapia Cognitivo-Comportamental, buscando identificar e modificar padrões disfuncionais de pensamento e comportamento, que geram sofrimento psicológico em diversas esferas da vida do adolescente. Para isso, também são utilizadas técnicas e recursos lúdicos, como jogos, filmes, músicas, animes, entre outros, que fazem sentido para o adolescente e que auxiliam no processo terapêutico.`,
+    cor: 'verde',
+  },
+  {
+    icone: '👥',
+    titulo: 'Grupo de Adolescentes',
+    subtitulo: 'Online',
+    texto: `Os grupos de adolescentes ocorrem na abordagem da Terapia Cognitivo-Comportamental, possuindo uma estrutura e duração definidas, que varia de acordo com o objetivo terapêutico. São utilizados para promoção e prevenção da saúde mental, sintomas depressivos, ansiedade, autoestima, criação de laços, entre outros.`,
+    cor: 'rosa',
+  },
+  {
+    icone: '🤝',
+    titulo: 'Orientação Parental',
+    subtitulo: 'Individual ou em grupo · Online',
+    texto: `Orientação para pais e cuidadores sobre cuidados em saúde mental, estratégias de regulação emocional para seus filhos, bem como orientações de manejo, entre outras. A orientação parental pode ser realizada com a família e atua como um suporte para os pais ou cuidadores, que muitas vezes não sabem o que fazer durante o desenvolvimento de seus filhos.`,
+    cor: 'laranja',
+  },
+];
+---
+
+<section class="secao atendimentos" id="atendimentos">
+  <div class="container">
+    <div class="atendimentos__cabecalho">
+      <h2>Atendimentos</h2>
+      <p>Todos os atendimentos são realizados online, com segurança e acolhimento.</p>
+    </div>
+
+    <ul class="atendimentos__grid">
+      {atendimentos.map(a => (
+        <li class={`card card--${a.cor}`}>
+          <div class="card__icone" aria-hidden="true">{a.icone}</div>
+          <div class="card__cabecalho">
+            <h3 class="card__titulo">{a.titulo}</h3>
+            <span class="card__selo">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="3" width="20" height="14" rx="2"/>
+                <line x1="8" y1="21" x2="16" y2="21"/>
+                <line x1="12" y1="17" x2="12" y2="21"/>
+              </svg>
+              {a.subtitulo}
+            </span>
+          </div>
+          <p class="card__texto">{a.texto}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .atendimentos {
+    background-color: var(--cor-fundo);
+  }
+
+  .atendimentos__cabecalho {
+    text-align: center;
+    margin-bottom: var(--espacamento-lg);
+  }
+
+  .atendimentos__cabecalho p {
+    margin-inline: auto;
+    font-size: 1.05rem;
+    color: var(--cor-texto);
+    opacity: 0.8;
+    margin-top: 0.5rem;
+  }
+
+  .atendimentos__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--espacamento-md);
+  }
+
+  .card {
+    background-color: #fff;
+    border-radius: var(--raio-lg);
+    padding: var(--espacamento-md);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    box-shadow: 0 4px 20px rgba(78, 111, 76, 0.08);
+    border-top: 4px solid transparent;
+    transition: transform var(--transicao), box-shadow var(--transicao);
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 32px rgba(78, 111, 76, 0.14);
+  }
+
+  .card--verde {
+    border-top-color: var(--cor-verde-escuro);
+  }
+
+  .card--rosa {
+    border-top-color: var(--cor-rosa);
+  }
+
+  .card--laranja {
+    border-top-color: var(--cor-laranja);
+  }
+
+  .card__icone {
+    font-size: 2rem;
+  }
+
+  .card__cabecalho {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .card__titulo {
+    color: var(--cor-verde-escuro);
+    font-size: 1.15rem;
+  }
+
+  .card__selo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--cor-verde-escuro);
+    background-color: var(--cor-verde-claro);
+    padding: 0.2rem 0.6rem;
+    border-radius: var(--raio-full);
+    width: fit-content;
+  }
+
+  .card--rosa .card__selo {
+    color: #fff;
+    background-color: var(--cor-rosa);
+  }
+
+  .card--laranja .card__selo {
+    color: #fff;
+    background-color: var(--cor-laranja);
+  }
+
+  .card__texto {
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: var(--cor-texto);
+    max-width: none;
+    opacity: 0.85;
+  }
+
+  @media (max-width: 900px) {
+    .atendimentos__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
