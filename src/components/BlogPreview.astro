@@ -6,6 +6,8 @@ interface Post {
     description: string;
     pubDate: Date;
     tags?: string[];
+    heroImage?: string;
+    heroImageAlt?: string;
   };
 }
 
@@ -33,15 +35,16 @@ function formatarData(date: Date) {
         {posts.map(post => (
           <li class="post-card">
             <a href={`/blog/${post.slug}`} class="post-card__link" aria-label={`Ler: ${post.data.title}`}>
-              <div class="post-card__decoracao" aria-hidden="true">
-                <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg" width="200" height="120">
-                  <rect width="200" height="120" fill="var(--cor-verde-claro)" opacity="0.4" rx="12"/>
-                  <circle cx="40" cy="60" r="25" fill="var(--cor-verde-escuro)" opacity="0.15"/>
-                  <circle cx="160" cy="40" r="18" fill="var(--cor-rosa)" opacity="0.2"/>
-                  <rect x="60" y="30" width="100" height="8" rx="4" fill="var(--cor-verde-escuro)" opacity="0.15"/>
-                  <rect x="60" y="50" width="80" height="6" rx="3" fill="var(--cor-verde-escuro)" opacity="0.1"/>
-                  <rect x="60" y="65" width="90" height="6" rx="3" fill="var(--cor-verde-escuro)" opacity="0.1"/>
-                </svg>
+              <div class="post-card__foto">
+                {post.data.heroImage && (
+                  <img
+                    src={`${post.data.heroImage}-card.webp`}
+                    alt={post.data.heroImageAlt ?? post.data.title}
+                    width={800}
+                    height={533}
+                    loading="lazy"
+                  />
+                )}
               </div>
               <div class="post-card__conteudo">
                 {post.data.tags && post.data.tags.length > 0 && (
@@ -118,10 +121,20 @@ function formatarData(date: Date) {
     color: inherit;
   }
 
-  .post-card__decoracao svg {
+  .post-card__foto {
+    overflow: hidden;
+  }
+
+  .post-card__foto img {
     width: 100%;
-    height: auto;
+    height: 180px;
+    object-fit: cover;
     display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .post-card:hover .post-card__foto img {
+    transform: scale(1.04);
   }
 
   .post-card__conteudo {

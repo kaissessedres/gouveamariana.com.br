@@ -5,16 +5,20 @@ const WA_LINK = `https://wa.me/{{WHATSAPP}}?text=${encodeURIComponent('Olá, Mar
 <header class="header" id="header">
   <div class="container header__inner">
     <a href="/" class="header__logo" aria-label="Mariana Gouvêa Psicóloga — Página inicial">
-      <img src="/logo.png" alt="Mariana Gouvêa Psicóloga" height="52" />
+      <img src="/simbolo.png" alt="" class="header__simbolo" aria-hidden="true" />
+      <span class="header__logo-texto">
+        <strong>Mariana Gouvêa</strong>
+        <small>Psicóloga infantojuvenil</small>
+      </span>
     </a>
 
     <nav class="header__nav" aria-label="Navegação principal">
       <ul class="header__nav-list">
-        <li><a href="#sobre">Sobre</a></li>
-        <li><a href="#atendimentos">Atendimentos</a></li>
-        <li><a href="#duvidas">Dúvidas</a></li>
+        <li><a href="/#sobre">Sobre</a></li>
+        <li><a href="/#atendimentos">Atendimentos</a></li>
+        <li><a href="/#duvidas">Dúvidas</a></li>
         <li><a href="/blog">Blog</a></li>
-        <li><a href="#contato">Contato</a></li>
+        <li><a href="/#contato">Contato</a></li>
       </ul>
     </nav>
 
@@ -35,11 +39,11 @@ const WA_LINK = `https://wa.me/{{WHATSAPP}}?text=${encodeURIComponent('Olá, Mar
   <!-- Mobile nav -->
   <div class="header__nav-mobile" id="nav-mobile" aria-hidden="true">
     <ul>
-      <li><a href="#sobre" class="nav-mobile__link">Sobre</a></li>
-      <li><a href="#atendimentos" class="nav-mobile__link">Atendimentos</a></li>
-      <li><a href="#duvidas" class="nav-mobile__link">Dúvidas</a></li>
+      <li><a href="/#sobre" class="nav-mobile__link">Sobre</a></li>
+      <li><a href="/#atendimentos" class="nav-mobile__link">Atendimentos</a></li>
+      <li><a href="/#duvidas" class="nav-mobile__link">Dúvidas</a></li>
       <li><a href="/blog" class="nav-mobile__link">Blog</a></li>
-      <li><a href="#contato" class="nav-mobile__link">Contato</a></li>
+      <li><a href="/#contato" class="nav-mobile__link">Contato</a></li>
       <li>
         <a href={WA_LINK} class="btn btn--whatsapp" target="_blank" rel="noopener noreferrer" style="width:100%;justify-content:center;">
           WhatsApp
@@ -74,12 +78,34 @@ const WA_LINK = `https://wa.me/{{WHATSAPP}}?text=${encodeURIComponent('Olá, Mar
 
   .header__logo {
     flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .header__simbolo {
+    height: 44px;
+    width: auto;
   }
 
   .header__logo-texto {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+  }
+
+  .header__logo-texto strong {
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     color: var(--cor-verde-escuro);
+  }
+
+  .header__logo-texto small {
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--cor-texto);
+    opacity: 0.7;
+    letter-spacing: 0.01em;
   }
 
   .header__nav {

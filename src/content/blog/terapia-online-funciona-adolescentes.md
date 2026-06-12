@@ -3,6 +3,8 @@ title: "Terapia online funciona para adolescentes?"
 description: "Uma das dúvidas mais comuns entre pais e cuidadores: o atendimento psicológico online realmente funciona para crianças e adolescentes? Entenda como esse modelo acontece na prática."
 pubDate: 2025-01-15
 tags: ["Adolescentes", "Terapia Online"]
+heroImage: "/fotos-web/blog-online"
+heroImageAlt: "Mariana Gouvêa sentada no chão brincando com duas crianças durante uma sessão lúdica"
 ---
 
 Com a popularização do atendimento psicológico online, muitos pais e cuidadores chegam com uma dúvida legítima: *a terapia online realmente funciona para o meu filho adolescente?*

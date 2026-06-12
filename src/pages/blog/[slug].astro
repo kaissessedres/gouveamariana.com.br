@@ -51,6 +51,19 @@ function formatarData(date: Date) {
         </div>
       </header>
 
+      {post.data.heroImage && (
+        <div class="container">
+          <img
+            src={`${post.data.heroImage}-capa.webp`}
+            alt={post.data.heroImageAlt ?? post.data.title}
+            width={1280}
+            height={720}
+            class="post-pagina__capa"
+            loading="eager"
+          />
+        </div>
+      )}
+
       <div class="container post-pagina__corpo">
         <div class="prose">
           <Content />
@@ -138,6 +151,17 @@ function formatarData(date: Date) {
     font-size: 0.85rem;
     color: var(--cor-texto);
     opacity: 0.5;
+  }
+
+  .post-pagina__capa {
+    width: 100%;
+    max-width: 920px;
+    margin: var(--espacamento-lg) auto 0;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: var(--raio-lg);
+    box-shadow: 0 16px 48px rgba(78, 111, 76, 0.18);
+    display: block;
   }
 
   .post-pagina__corpo {

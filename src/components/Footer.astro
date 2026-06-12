@@ -5,8 +5,9 @@ const anoAtual = new Date().getFullYear();
 <footer class="footer">
   <div class="container footer__inner">
     <div class="footer__marca">
-      <a href="/" aria-label="Mariana Gouvêa Psicóloga — Início">
-        <img src="/logo-branco.png" alt="Mariana Gouvêa Psicóloga" height="52" />
+      <a href="/" class="footer__logo" aria-label="Mariana Gouvêa Psicóloga — Início">
+        <img src="/simbolo-branco.png" alt="" class="footer__simbolo" aria-hidden="true" />
+        <span class="footer__logo-texto">Mariana Gouvêa</span>
       </a>
       <p class="footer__crp">CRP 07/41781</p>
       <p class="footer__descricao">Psicóloga Infantojuvenil · Atendimento online em todo o Brasil.</p>
@@ -15,11 +16,11 @@ const anoAtual = new Date().getFullYear();
     <nav class="footer__nav" aria-label="Links do rodapé">
       <h3 class="footer__nav-titulo">Navegação</h3>
       <ul>
-        <li><a href="#sobre">Sobre</a></li>
-        <li><a href="#atendimentos">Atendimentos</a></li>
-        <li><a href="#duvidas">Dúvidas</a></li>
+        <li><a href="/#sobre">Sobre</a></li>
+        <li><a href="/#atendimentos">Atendimentos</a></li>
+        <li><a href="/#duvidas">Dúvidas</a></li>
         <li><a href="/blog">Blog</a></li>
-        <li><a href="#contato">Contato</a></li>
+        <li><a href="/#contato">Contato</a></li>
       </ul>
     </nav>
 
@@ -89,6 +90,17 @@ const anoAtual = new Date().getFullYear();
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+  }
+
+  .footer__logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .footer__simbolo {
+    height: 48px;
+    width: auto;
   }
 
   .footer__logo-texto {

@@ -38,6 +38,17 @@ function formatarData(date: Date) {
           {posts.map(post => (
             <li class="post-item">
               <a href={`/blog/${post.slug}`} class="post-item__link">
+                {post.data.heroImage && (
+                  <div class="post-item__foto">
+                    <img
+                      src={`${post.data.heroImage}-card.webp`}
+                      alt={post.data.heroImageAlt ?? post.data.title}
+                      width={800}
+                      height={533}
+                      loading="lazy"
+                    />
+                  </div>
+                )}
                 <div class="post-item__conteudo">
                   {post.data.tags && post.data.tags.length > 0 && (
                     <span class="post-item__tag">{post.data.tags[0]}</span>
@@ -130,17 +141,35 @@ function formatarData(date: Date) {
 
   .post-item__link {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--espacamento-md);
-    padding: var(--espacamento-md);
+    align-items: stretch;
+    gap: 0;
     color: inherit;
+  }
+
+  .post-item__foto {
+    flex-shrink: 0;
+    width: 200px;
+    overflow: hidden;
+  }
+
+  .post-item__foto img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .post-item:hover .post-item__foto img {
+    transform: scale(1.05);
   }
 
   .post-item__conteudo {
     display: flex;
     flex-direction: column;
     gap: 0.35rem;
+    padding: var(--espacamento-md);
+    flex: 1;
   }
 
   .post-item__tag {
@@ -178,11 +207,29 @@ function formatarData(date: Date) {
     color: var(--cor-verde-escuro);
     opacity: 0.4;
     flex-shrink: 0;
+    align-self: center;
+    padding-right: var(--espacamento-md);
     transition: opacity var(--transicao), transform var(--transicao);
   }
 
   .post-item:hover .post-item__seta {
     opacity: 0.9;
     transform: translateX(3px);
+  }
+
+  @media (max-width: 640px) {
+    .post-item__link {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .post-item__foto {
+      width: 100%;
+      height: 180px;
+    }
+
+    .post-item__seta {
+      display: none;
+    }
   }
 </style>
